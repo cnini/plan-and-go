@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "477310465787",
+    "project_id": "plan-and-go-fcb1f",
+    "storage_bucket": "plan-and-go-fcb1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477310465787:android:199f28643cd020a891625e",
+        "android_client_info": {
+          "package_name": "com.example.plan_and_go"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6M--PcM_BJiqGnPKQZfue-VM95RaCDqo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
