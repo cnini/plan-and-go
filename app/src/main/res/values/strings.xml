@@ -4,4 +4,10 @@
     <string name="home_nav_text">Rechercher</string>
     <string name="trips_nav_text">Trajets</string>
     <string name="myaccount_nav_text">Mon compte</string>
+
+    <string name="home_image_content_description">Background image</string>
+    <string name="home_title_one">Où allez vous ?</string>
+    <string name="home_hint_one">ex : ESTIAM</string>
+    <string name="home_button_one">Rechercher un chauffeur</string>
+
 </resources>
