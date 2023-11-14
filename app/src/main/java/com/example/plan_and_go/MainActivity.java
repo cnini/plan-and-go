@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new TripsFragment());
             } else if (item.getItemId() == R.id.myAccount) {
                 replaceFragment(new MyAccountFragment());
+            } else if (item.getItemId() == R.id.auth) {
+                replaceFragment(new AuthFragment());
             }
 
             return true;
