@@ -4,13 +4,13 @@
     <item
         android:id="@+id/home"
         android:icon="@drawable/baseline_search_24"
-        android:title="Rechercher" />
+        android:title="@string/home_nav_text" />
     <item
         android:id="@+id/trips"
         android:icon="@drawable/baseline_directions_car_24"
-        android:title="Trajets" />
+        android:title="@string/trips_nav_text" />
     <item
         android:id="@+id/myAccount"
         android:icon="@drawable/baseline_person_2_24"
-        android:title="Mon compte" />
+        android:title="@string/myaccount_nav_text" />
 </menu>

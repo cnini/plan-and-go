@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">plan_and_go</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Plan &amp; Go</string>
+
+    <string name="home_nav_text">Rechercher</string>
+    <string name="trips_nav_text">Trajets</string>
+    <string name="myaccount_nav_text">Mon compte</string>
 </resources>
