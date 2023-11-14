@@ -13,4 +13,9 @@
         android:id="@+id/myAccount"
         android:icon="@drawable/baseline_person_2_24"
         android:title="@string/myaccount_nav_text" />
+
+    <item
+        android:id="@+id/auth"
+        android:icon="@drawable/baseline_person_2_24"
+        android:title="@string/auth_nav_text" />
 </menu>

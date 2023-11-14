@@ -4,6 +4,7 @@
     <string name="home_nav_text">Rechercher</string>
     <string name="trips_nav_text">Mes trajets</string>
     <string name="myaccount_nav_text">Mon compte</string>
+    <string name="auth_nav_text">Authentification</string>
 
     <string name="home_image_content_description">Background image</string>
     <string name="home_title_one">Où allez vous ?</string>
@@ -17,5 +18,16 @@
     <string name="trips_item_title_one">Destination</string>
     <string name="trips_item_title_two">Prix</string>
     <string name="trips_item_image_content_description">Item image</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
