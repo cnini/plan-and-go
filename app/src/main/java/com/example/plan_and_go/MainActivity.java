@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import com.google.firebase.auth.FirebaseAuth;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,19 +23,31 @@ import com.example.plan_and_go.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
 
     private EditText editTextEmail, editTextPassword;
     private Button buttonSignIn, buttonSignUp;
 
     ActivityMainBinding binding;
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        menu = binding.bottomNavigationView.getMenu();
+
+        if (currentUser == null) {
+            menu.findItem(R.id.myAccount).setVisible(false);
+            menu.findItem(R.id.auth).setVisible(true);
+        } else {
+            menu.findItem(R.id.myAccount).setVisible(true);
+            menu.findItem(R.id.auth).setVisible(false);
+        }
 
         setContentView(binding.getRoot());
 
@@ -48,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(new TripsFragment());
             } else if (item.getItemId() == R.id.myAccount) {
                 replaceFragment(new MyAccountFragment());
+            } else if (item.getItemId() == R.id.auth) {
+                replaceFragment(new AuthFragment());
             }
 
             return true;
