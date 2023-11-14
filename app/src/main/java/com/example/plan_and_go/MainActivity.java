@@ -51,17 +51,17 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-        setContentView(R.layout.activity_login);
-
-        mAuth = FirebaseAuth.getInstance();
-
-        editTextEmail = findViewById(R.id.editTextEmail);
-        editTextPassword = findViewById(R.id.editTextPassword);
-        buttonSignIn = findViewById(R.id.buttonSignIn);
-        buttonSignUp = findViewById(R.id.buttonSignUp);
-
-        buttonSignIn.setOnClickListener(v -> signIn());
-        buttonSignUp.setOnClickListener(v -> signUp());
+//        setContentView(R.layout.activity_login);
+//
+//        mAuth = FirebaseAuth.getInstance();
+//
+//        editTextEmail = findViewById(R.id.editTextEmail);
+//        editTextPassword = findViewById(R.id.editTextPassword);
+//        buttonSignIn = findViewById(R.id.buttonSignIn);
+//        buttonSignUp = findViewById(R.id.buttonSignUp);
+//
+//        buttonSignIn.setOnClickListener(v -> signIn());
+//        buttonSignUp.setOnClickListener(v -> signUp());
     }
 
     private void replaceFragment(Fragment fragment) {
