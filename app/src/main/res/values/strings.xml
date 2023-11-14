@@ -2,13 +2,17 @@
     <string name="app_name">Plan &amp; Go</string>
 
     <string name="home_nav_text">Rechercher</string>
-    <string name="trips_nav_text">Trajets</string>
+    <string name="trips_nav_text">Mes trajets</string>
     <string name="myaccount_nav_text">Mon compte</string>
 
     <string name="home_image_content_description">Background image</string>
     <string name="home_title_one">Où allez vous ?</string>
     <string name="home_hint_one">ex : ESTIAM</string>
     <string name="home_button_one">Rechercher un chauffeur</string>
-    <string name="home_title_two">Vos anciens trajets</string>
+    <string name="home_title_two">Trajet en cours</string>
+
+    <string name="trips_title_one">Mes trajets</string>
+    <string name="trips_title_two">En cours…</string>
+    <string name="trips_title_three">Terminés</string>
 
 </resources>
