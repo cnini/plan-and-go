@@ -14,5 +14,8 @@
     <string name="trips_title_one">Mes trajets</string>
     <string name="trips_title_two">En cours…</string>
     <string name="trips_title_three">Terminés</string>
+    <string name="trips_item_title_one">Destination</string>
+    <string name="trips_item_title_two">Prix</string>
+    <string name="trips_item_image_content_description">Item image</string>
 
 </resources>
