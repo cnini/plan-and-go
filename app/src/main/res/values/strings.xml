@@ -9,5 +9,6 @@
     <string name="home_title_one">Où allez vous ?</string>
     <string name="home_hint_one">ex : ESTIAM</string>
     <string name="home_button_one">Rechercher un chauffeur</string>
+    <string name="home_title_two">Vos anciens trajets</string>
 
 </resources>
