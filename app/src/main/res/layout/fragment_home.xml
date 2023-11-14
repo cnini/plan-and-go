@@ -68,13 +68,6 @@
             android:text="@string/home_title_two"
             android:textSize="24sp" />
 
-        <ListView
-            android:id="@+id/listOldTrips"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="30dp"
-            tools:ignore="NestedScrolling" />
-
     </LinearLayout>
 
 </ScrollView>
