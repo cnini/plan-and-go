@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "com.example.plan_and_go"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.plan_and_go"
-        minSdk = 33
+        minSdk = 34
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
