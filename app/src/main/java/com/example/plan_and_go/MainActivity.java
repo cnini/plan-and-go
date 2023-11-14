@@ -1,4 +1,4 @@
-package com.plan_and_go;
+package com.example.plan_and_go;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -7,11 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-import com.example.plan_and_go.R;
 import com.example.plan_and_go.databinding.ActivityMainBinding;
-import com.plan_and_go.ui.HomeFragment;
-import com.plan_and_go.ui.MyAccountFragment;
-import com.plan_and_go.ui.TripsFragment;
 
 public class MainActivity extends AppCompatActivity {
 

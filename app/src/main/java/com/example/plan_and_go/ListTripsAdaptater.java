@@ -1,4 +1,4 @@
-package com.plan_and_go.ui;
+package com.example.plan_and_go;
 
 import android.content.Context;
 import android.view.View;
