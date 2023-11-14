@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/editTextPassword"
         android:layout_margin="16dp"
-        android:text="Sign In" />
+        android:text="Se connecter" />
 
     <Button
         android:id="@+id/buttonSignUp"
@@ -37,5 +37,5 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonSignIn"
         android:layout_margin="16dp"
-        android:text="Sign Up" />
+        android:text="S'inscrire" />
 </RelativeLayout>
