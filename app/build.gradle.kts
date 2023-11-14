@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.plan_and_go"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.plan_and_go"
@@ -24,6 +24,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+    }
+    buildFeatures {
+        viewBinding = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
