@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
 
     ActivityMainBinding binding;
+
+    AutocompleteSupportFragment autocompleteFragment, autocompleteFragmentBis;
     Menu menu;
 
     @Override
@@ -42,71 +44,39 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         menu = binding.bottomNavigationView.getMenu();
 
-        updateActivity(currentUser);
-
         // Initialiser Places API avec votre clé
         Places.initialize(getApplicationContext(), "AIzaSyDl-ISTL_kAZPEmKH0-Qz_Oqkda_gq-MLA");
 
-        AutocompleteSupportFragment autocompleteFragment = AutocompleteSupportFragment.newInstance();
-        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS));
-        autocompleteFragment.setCountry("FR"); // Code ISO 3166-1 alpha-2 pour la France
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, autocompleteFragment)
-                .commit();
-
-        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(@NonNull Place place) {
-                // Traitement lorsque l'utilisateur sélectionne une adresse
-                String address = place.getAddress();
-                // Faites quelque chose avec l'adresse sélectionnée
-            }
-
-            @Override
-            public void onError(@NonNull Status status) {
-                // Gérer les erreurs
-            }
-        });
-
-
-        AutocompleteSupportFragment autocompleteFragmentBis = AutocompleteSupportFragment.newInstance();
-        autocompleteFragmentBis.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS));
-        autocompleteFragmentBis.setCountry("FR"); // Code ISO 3166-1 alpha-2 pour la France
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container_bis, autocompleteFragmentBis)
-                .commit();
-
-        autocompleteFragmentBis.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(@NonNull Place place) {
-                // Traitement lorsque l'utilisateur sélectionne une adresse
-                String address = place.getAddress();
-                // Faites quelque chose avec l'adresse sélectionnée
-            }
-
-            @Override
-            public void onError(@NonNull Status status) {
-                // Gérer les erreurs
-            }
-        });
-
+        updateActivity(currentUser);
     }
 
     /**
      * Replace the frame layout by the fragment
      * @param fragment
      */
-    private void replaceFragment(Fragment fragment) {
+    private void replaceFragment(int layoutId, Fragment fragment) {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.replace(layoutId, fragment);
         fragmentTransaction.commit();
 
+    }
+
+    private void mapsInputMethods(AutocompleteSupportFragment autoFragment) {
+        autoFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                // Traitement lorsque l'utilisateur sélectionne une adresse
+                String address = place.getAddress();
+                // Faites quelque chose avec l'adresse sélectionnée
+            }
+
+            @Override
+            public void onError(@NonNull Status status) {
+                // Gérer les erreurs
+            }
+        });
     }
 
     /**
@@ -116,13 +86,28 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             if (item.getItemId() == R.id.home) {
-                replaceFragment(new HomeFragment());
+
+                replaceFragment(R.id.frame_layout, new HomeFragment());
+
+                autocompleteFragment = AutocompleteSupportFragment.newInstance();
+                autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS));
+                autocompleteFragment.setCountry("FR"); // Code ISO 3166-1 alpha-2 pour la France
+
+                autocompleteFragmentBis = AutocompleteSupportFragment.newInstance();
+                autocompleteFragmentBis.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS));
+                autocompleteFragmentBis.setCountry("FR"); // Code ISO 3166-1 alpha-2 pour la France
+
+                replaceFragment(R.id.fragment_container, autocompleteFragment);
+                mapsInputMethods(autocompleteFragment);
+
+                replaceFragment(R.id.fragment_container_bis, autocompleteFragmentBis);
+                mapsInputMethods(autocompleteFragmentBis);
             } else if (item.getItemId() == R.id.trips) {
-                replaceFragment(new TripsFragment());
+                replaceFragment(R.id.frame_layout, new TripsFragment());
             } else if (item.getItemId() == R.id.myAccount) {
-                replaceFragment(new MyAccountFragment());
+                replaceFragment(R.id.frame_layout, new MyAccountFragment());
             } else if (item.getItemId() == R.id.auth) {
-                replaceFragment(new AuthFragment());
+                replaceFragment(R.id.frame_layout, new AuthFragment());
             }
 
             return true;
@@ -147,7 +132,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // Display the home fragment
-        replaceFragment(new HomeFragment());
+        replaceFragment(R.id.frame_layout, new HomeFragment());
+
+        autocompleteFragment = AutocompleteSupportFragment.newInstance();
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS));
+        autocompleteFragment.setCountry("FR"); // Code ISO 3166-1 alpha-2 pour la France
+
+        autocompleteFragmentBis = AutocompleteSupportFragment.newInstance();
+        autocompleteFragmentBis.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS));
+        autocompleteFragmentBis.setCountry("FR"); // Code ISO 3166-1 alpha-2 pour la France
+
+        replaceFragment(R.id.fragment_container, autocompleteFragment);
+        mapsInputMethods(autocompleteFragment);
+
+        replaceFragment(R.id.fragment_container_bis, autocompleteFragmentBis);
+        mapsInputMethods(autocompleteFragmentBis);
 
         // Select the home's item menu
         binding.bottomNavigationView.setSelectedItemId(R.id.home);
