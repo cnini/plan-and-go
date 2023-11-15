@@ -19,10 +19,12 @@
     <string name="trips_item_title_two">Prix</string>
     <string name="trips_item_image_content_description">Item image</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="prompt_email">Adresse email</string>
+    <string name="prompt_email_hint">jane.doe@mail.com</string>
+    <string name="prompt_password">Mot de passe</string>
+    <string name="prompt_password_hint">****************</string>
+    <string name="action_sign_in">Se connecter</string>
+    <string name="action_sign_up">S\'inscrire</string>
     <string name="welcome">"Welcome!"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
