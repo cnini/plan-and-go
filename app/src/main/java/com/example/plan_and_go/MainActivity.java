@@ -1,5 +1,6 @@
 package com.example.plan_and_go;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -7,12 +8,19 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.auth.FirebaseAuth;
 import android.view.Menu;
 import com.google.firebase.auth.FirebaseUser;
 
 
 import com.example.plan_and_go.databinding.ActivityMainBinding;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -35,6 +43,57 @@ public class MainActivity extends AppCompatActivity {
         menu = binding.bottomNavigationView.getMenu();
 
         updateActivity(currentUser);
+
+        // Initialiser Places API avec votre clé
+        Places.initialize(getApplicationContext(), "AIzaSyDl-ISTL_kAZPEmKH0-Qz_Oqkda_gq-MLA");
+
+        AutocompleteSupportFragment autocompleteFragment = AutocompleteSupportFragment.newInstance();
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS));
+        autocompleteFragment.setCountry("FR"); // Code ISO 3166-1 alpha-2 pour la France
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, autocompleteFragment)
+                .commit();
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                // Traitement lorsque l'utilisateur sélectionne une adresse
+                String address = place.getAddress();
+                // Faites quelque chose avec l'adresse sélectionnée
+            }
+
+            @Override
+            public void onError(@NonNull Status status) {
+                // Gérer les erreurs
+            }
+        });
+
+
+        AutocompleteSupportFragment autocompleteFragmentBis = AutocompleteSupportFragment.newInstance();
+        autocompleteFragmentBis.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS));
+        autocompleteFragmentBis.setCountry("FR"); // Code ISO 3166-1 alpha-2 pour la France
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container_bis, autocompleteFragmentBis)
+                .commit();
+
+        autocompleteFragmentBis.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                // Traitement lorsque l'utilisateur sélectionne une adresse
+                String address = place.getAddress();
+                // Faites quelque chose avec l'adresse sélectionnée
+            }
+
+            @Override
+            public void onError(@NonNull Status status) {
+                // Gérer les erreurs
+            }
+        });
+
     }
 
     /**

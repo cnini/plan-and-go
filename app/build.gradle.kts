@@ -43,6 +43,8 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation("com.google.android.gms:play-services-location:17.1.0")
     implementation("com.google.android.libraries.places:places:2.5.0")
+    implementation ("com.google.android.libraries.places:places:2.7.0")
+    implementation ("com.google.android.gms:play-services-location:18.0.0")
     implementation("androidx.navigation:navigation-fragment:2.7.5")
     implementation("androidx.navigation:navigation-ui:2.7.5")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
