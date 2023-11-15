@@ -43,6 +43,19 @@ public class MainActivity extends AppCompatActivity {
 
         replaceFragment(new HomeFragment());
 
+        listNavItem();
+    }
+
+    private void replaceFragment(Fragment fragment) {
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
+        fragmentTransaction.commit();
+
+    }
+
+    private void listNavItem() {
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
             if (item.getItemId() == R.id.home) {
@@ -59,12 +72,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void replaceFragment(Fragment fragment) {
+    public void updateMainActivity(FirebaseUser user) {
+        if (user == null) {
+            menu.findItem(R.id.myAccount).setVisible(false);
+            menu.findItem(R.id.auth).setVisible(true);
+        } else {
+            menu.findItem(R.id.myAccount).setVisible(true);
+            menu.findItem(R.id.auth).setVisible(false);
+        }
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, fragment);
-        fragmentTransaction.commit();
+        setContentView(binding.getRoot());
 
+        replaceFragment(new HomeFragment());
+
+        binding.bottomNavigationView.setSelectedItemId(R.id.home);
+
+        listNavItem();
     }
 }

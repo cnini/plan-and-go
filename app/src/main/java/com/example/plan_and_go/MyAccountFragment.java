@@ -92,7 +92,6 @@ public class MyAccountFragment extends Fragment {
     private void logout() {
         mAuth.signOut();
 
-        binding.bottomNavigationView.getMenu().findItem(R.id.myAccount).setVisible(false);
-        binding.bottomNavigationView.getMenu().findItem(R.id.auth).setVisible(true);
+        ((MainActivity) requireActivity()).updateMainActivity(null);
     }
 }

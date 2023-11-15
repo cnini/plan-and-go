@@ -99,8 +99,7 @@ public class AuthFragment extends Fragment {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        binding.bottomNavigationView.getMenu().findItem(R.id.myAccount).setVisible(true);
-                        binding.bottomNavigationView.getMenu().findItem(R.id.auth).setVisible(false);
+                        ((MainActivity) requireActivity()).updateMainActivity(mAuth.getCurrentUser());
                     } else {
                         // La connexion a échoué
                     }
@@ -114,8 +113,7 @@ public class AuthFragment extends Fragment {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        binding.bottomNavigationView.getMenu().findItem(R.id.myAccount).setVisible(true);
-                        binding.bottomNavigationView.getMenu().findItem(R.id.auth).setVisible(false);
+                        ((MainActivity) requireActivity()).updateMainActivity(mAuth.getCurrentUser());
                     } else {
                         // L'inscription a échoué
                     }
