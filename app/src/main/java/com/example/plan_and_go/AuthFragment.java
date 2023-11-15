@@ -7,6 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.example.plan_and_go.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +19,12 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class AuthFragment extends Fragment {
+
+    private FirebaseAuth mAuth;
+    private ActivityMainBinding binding;
+
+    private EditText editAuthEmail, editAuthPassword;
+    private Button buttonLogin, buttonSignup;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,6 +60,7 @@ public class AuthFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -58,7 +70,53 @@ public class AuthFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_auth, container, false);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        binding = ActivityMainBinding.inflate(inflater);
+
+        editAuthEmail = view.findViewById(R.id.editTextEmail);
+        editAuthPassword = view.findViewById(R.id.editTextPassword);
+
+        buttonLogin = view.findViewById(R.id.buttonSignIn);
+        buttonSignup = view.findViewById(R.id.buttonSignUp);
+
+        buttonLogin.setOnClickListener(v -> signIn());
+        buttonSignup.setOnClickListener(v -> signUp());
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_auth, container, false);
+        return view;
+    }
+
+
+
+    private void signIn() {
+        String email = editAuthEmail.getText().toString();
+        String password = editAuthPassword.getText().toString();
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        ((MainActivity) requireActivity()).updateMainActivity(mAuth.getCurrentUser());
+                    } else {
+                        // La connexion a échoué
+                    }
+                });
+    }
+
+    private void signUp() {
+        String email = editAuthEmail.getText().toString();
+        String password = editAuthPassword.getText().toString();
+
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        ((MainActivity) requireActivity()).updateMainActivity(mAuth.getCurrentUser());
+                    } else {
+                        // L'inscription a échoué
+                    }
+                });
     }
 }
