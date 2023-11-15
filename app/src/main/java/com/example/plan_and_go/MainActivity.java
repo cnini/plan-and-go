@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 
 import com.example.plan_and_go.databinding.ActivityMainBinding;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -33,6 +35,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference trajetsRef = database.getReference("trajets");
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            String utilisateurId = currentUser.getUid();
+
+            // Création d'un nouvel objet Trajet
+            Trajet nouveauTrajet = new Trajet("Adresse départ", "Adresse arrivée", utilisateurId);
+
+            // Sauvegarde du trajet dans la base de données Firebase
+            trajetsRef.push().setValue(nouveauTrajet);
+        } else {
+            // L'utilisateur n'est pas connecté, gérer cet état en conséquence
+        }
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
