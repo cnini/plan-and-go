@@ -8,7 +8,10 @@
 
     <string name="home_image_content_description">Background image</string>
     <string name="home_title_one">Où allez vous ?</string>
+    <string name="home_label_one">Départ</string>
+    <string name="home_label_two">Destination</string>
     <string name="home_hint_one">ex : ESTIAM</string>
+    <string name="home_hint_two">ex : Le Grand REX</string>
     <string name="home_button_one">Rechercher un chauffeur</string>
     <string name="home_title_two">Trajet en cours</string>
 
