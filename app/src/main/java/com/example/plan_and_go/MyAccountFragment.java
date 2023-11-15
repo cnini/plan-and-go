@@ -7,6 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.example.plan_and_go.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +19,12 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class MyAccountFragment extends Fragment {
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+    private ActivityMainBinding binding;
+
+    private Button buttonLogout;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,7 +69,30 @@ public class MyAccountFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_my_account, container, false);
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+
+        binding = ActivityMainBinding.inflate(inflater);
+
+        buttonLogout = view.findViewById(R.id.buttonLogout);
+
+        if (currentUser != null) {
+            buttonLogout.setOnClickListener(v -> logout());
+        } else {
+            binding.bottomNavigationView.getMenu().findItem(R.id.myAccount).setVisible(false);
+            binding.bottomNavigationView.getMenu().findItem(R.id.auth).setVisible(true);
+        }
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_account, container, false);
+        return view;
+    }
+
+    private void logout() {
+        mAuth.signOut();
+
+        binding.bottomNavigationView.getMenu().findItem(R.id.myAccount).setVisible(false);
+        binding.bottomNavigationView.getMenu().findItem(R.id.auth).setVisible(true);
     }
 }
