@@ -25,27 +25,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Get the Firebase instance
         mAuth = FirebaseAuth.getInstance();
+
+        // Get the Firebase user
         currentUser = mAuth.getCurrentUser();
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         menu = binding.bottomNavigationView.getMenu();
 
-        if (currentUser == null) {
-            menu.findItem(R.id.myAccount).setVisible(false);
-            menu.findItem(R.id.auth).setVisible(true);
-        } else {
-            menu.findItem(R.id.myAccount).setVisible(true);
-            menu.findItem(R.id.auth).setVisible(false);
-        }
-
-        setContentView(binding.getRoot());
-
-        replaceFragment(new HomeFragment());
-
-        listNavItem();
+        updateActivity(currentUser);
     }
 
+    /**
+     * Replace the frame layout by the fragment
+     * @param fragment
+     */
     private void replaceFragment(Fragment fragment) {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -55,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Listen to the click event on each item menu of the bottom nav bar
+     */
     private void listNavItem() {
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
 
@@ -72,21 +70,30 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void updateMainActivity(FirebaseUser user) {
+    /**
+     * Update the bottom nav bar, depending on the current user
+     * @param user
+     */
+    public void updateActivity(FirebaseUser user) {
         if (user == null) {
+            // Display authentication's item menu
             menu.findItem(R.id.myAccount).setVisible(false);
             menu.findItem(R.id.auth).setVisible(true);
         } else {
+            // Display my account's item menu
             menu.findItem(R.id.myAccount).setVisible(true);
             menu.findItem(R.id.auth).setVisible(false);
         }
 
         setContentView(binding.getRoot());
 
+        // Display the home fragment
         replaceFragment(new HomeFragment());
 
+        // Select the home's item menu
         binding.bottomNavigationView.setSelectedItemId(R.id.home);
 
+        // Get the bottom nav bar's click listener
         listNavItem();
     }
 }

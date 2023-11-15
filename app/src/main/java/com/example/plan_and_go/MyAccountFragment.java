@@ -92,6 +92,6 @@ public class MyAccountFragment extends Fragment {
     private void logout() {
         mAuth.signOut();
 
-        ((MainActivity) requireActivity()).updateMainActivity(null);
+        ((MainActivity) requireActivity()).updateActivity(null);
     }
 }
