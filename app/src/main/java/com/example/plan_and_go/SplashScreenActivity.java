@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private static final int SPLASH_SCREEN_DURATION = 4000; //4s
+    private static final int SPLASH_SCREEN_DURATION = 3000; //3s
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
